@@ -24,6 +24,9 @@ after_initialize do
   Topic.prepend HighestPost
   register_topic_preloader_associations(:highest_post)
   add_to_serializer(:topic_list_item, :highest_post_excerpt) do
-    ActionController::Base.helpers.strip_tags(object.highest_post&.excerpt)
+    content = Nokogiri::HTML.parse(object.highest_post&.cooked).css('p').first&.text || ""
+    ActionController::Base.helpers.strip_tags(
+        content
+    )[0..SiteSetting.post_excerpt_maxlength]
   end
 end

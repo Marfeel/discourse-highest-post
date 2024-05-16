@@ -6,3 +6,5 @@ group :development do
   gem "rubocop-discourse"
   gem "syntax_tree"
 end
+
+gem "nokogiri"
