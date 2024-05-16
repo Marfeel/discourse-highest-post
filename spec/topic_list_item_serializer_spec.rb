@@ -4,7 +4,7 @@ RSpec.describe TopicListItemSerializer do
   let!(:topic) { Fabricate(:topic) }
   let!(:post) { Fabricate(:post, topic: topic) }
   let!(:reply) do
-    Fabricate(:post, topic: topic, raw: "A reply to the <a href=\"example.com\">topic</a>")
+    Fabricate(:post, topic: topic, raw: "<p>A reply to the <a href=\"example.com\">topic</a></p><p>other post</p>")
   end
 
   it "serializes highest_post excerpt" do
