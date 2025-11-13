@@ -12,7 +12,7 @@ after_initialize do
     def self.prepended(base)
       base.has_one :highest_post,
                    ->(topic) do
-                     if topic.highest_post_number > 1
+                     if topic.highest_post_number >= 1
                        where(post_number: topic.highest_post_number)
                      else
                        Post.none
